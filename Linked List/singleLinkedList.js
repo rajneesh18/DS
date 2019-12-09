@@ -1,5 +1,4 @@
-/** 
- * Script: Single Linked List
+/** Single Linked List
  * Linked list is a collection of nodes, which is linked to each other by the address
  * of another node stored in the node object.
 */
@@ -47,12 +46,9 @@ class LinkedList {
         let newNode = new Node(data);
         
         // Check the list is empty or not
-        if(this.isEmpty())
-            this.head = newNode;
-        else {
+        if(!this.isEmpty())
             newNode.next = this.head;
-            this.head = newNode;
-        }
+        this.head = newNode;
         this.size++;    // Increment the size of the list
 
         return this.head;
@@ -181,6 +177,37 @@ class LinkedList {
 
         return current.data;    // return the element at that index
     }
+
+    lastToFirst = () => {
+        if(this.head == null || this.head.next == null) return this.head;
+        let previous = null;
+        let current = this.head;
+
+        while(current.next) {
+            previous = current;
+            current =  current.next;
+        }
+
+        previous.next = null;
+        current.next = this.head;
+        this.head = current;
+
+        return this.head;
+
+    }
+
+    reversePrint = (node) => {
+        let current = (node) ? node : this.head;
+        let str = '';
+        if(current){
+            if(current.next) {
+                str = this.reversePrint(current.next);
+            }
+            str+= current.data+' ';
+            return str;
+        }
+    }
+
 }
 
 // Linked List Implementation
