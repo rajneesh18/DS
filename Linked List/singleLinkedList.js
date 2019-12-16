@@ -17,6 +17,13 @@ class LinkedList {
         this.head = null;
         this.size = 0;
     }
+    
+    /** Function List: 
+     * isEmpty(), getSize(), show(), addFirst(), allLast(), add(), 
+     * removeFist(), removeLast(), remove(),
+     * elementAt(), lastToFist(),
+     * reversePrint(), reverse()
+    */
 
     // Function to check list is empty or not
     isEmpty = () => { return (this.head) ? false : true ; }
@@ -160,6 +167,7 @@ class LinkedList {
         return this.head;
     }
 
+    // Function to get the element at the particular position
     elementAt = (index) => {
         // Index is required
         if(index == null || index == undefined) { throw "Index is required"; return; }
@@ -178,6 +186,7 @@ class LinkedList {
         return current.data;    // return the element at that index
     }
 
+    // Shift last node of the list as the first node of the list
     lastToFirst = () => {
         if(this.head == null || this.head.next == null) return this.head;
         let previous = null;
@@ -196,6 +205,7 @@ class LinkedList {
 
     }
 
+    // Print the linked list in reverse order
     reversePrint = (node) => {
         let current = (node) ? node : this.head;
         let str = '';
@@ -206,6 +216,22 @@ class LinkedList {
             str+= current.data+' ';
             return str;
         }
+    }
+    
+    // Reverse the entire linked list using iterative process
+    reverse = () => {
+        let current = this.head;
+        let previous = null;
+        let nexty = null;
+
+        while(current) {
+            nexty = current.next;
+            current.next =  previous;
+            previous = current;
+            current = nexty;
+        }
+        this.head = previous;
+        return this.head;
     }
 
 }
